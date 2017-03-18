@@ -7,14 +7,16 @@ public class Endereco {
 	private String complemento;
 	private String cidade;
 	private String estado;
+	private Usuario usuario;
 	
-	public Endereco(long id, String cep, String bairro, String numero, String complemento, String cidade, String estado) {
+	public Endereco(long id, String cep, String bairro, String numero, String complemento, String cidade, String estado, Usuario usuario) {
 		this.cep = cep;
 		this.bairro = bairro;
 		this.numero = numero;
 		this.complemento = complemento;
 		this.cidade = cidade;
 		this.estado = estado;
+		this.usuario = usuario;
 	}
 
 	public String getCep() {
@@ -63,6 +65,14 @@ public class Endereco {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 }

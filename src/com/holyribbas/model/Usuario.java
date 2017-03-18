@@ -5,12 +5,14 @@ public class Usuario {
 	private String senha;
 	private String nome;
 	private String matricula;
+	private Endereco endereco;
 	
-	public Usuario(String login, String senha, String nome, String matricula) {
+	public Usuario(String login, String senha, String nome, String matricula, Endereco endereco) {
 		this.login = login;
 		this.senha = senha;
 		this.nome = nome;
 		this.matricula = matricula;
+		this.endereco = endereco;
 	}
 
 	public String getLogin() {
@@ -43,6 +45,14 @@ public class Usuario {
 
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 	
 }
