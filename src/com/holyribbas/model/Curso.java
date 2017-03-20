@@ -1,13 +1,22 @@
 package com.holyribbas.model;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Curso {
+	@Id
 	private int id;
 	private String nome;
 	private String tipo;
+	@OneToMany
 	private List<Aluno> alunos;
+	@ManyToMany
 	private List<Professor> professores;
+	@OneToMany
 	private List<Disciplina> disciplinas; 
 	
 	public Curso(int id, String nome, String tipo, List<Aluno> alunos, List<Professor> professores, List<Disciplina> disciplinas) {
@@ -61,6 +70,4 @@ public class Curso {
 	public void setDisciplinas(List<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
-	
-	
 }

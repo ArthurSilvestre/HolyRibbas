@@ -1,10 +1,17 @@
 package com.holyribbas.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Usuario {
+	@Id
 	private String login;
 	private String senha;
 	private String nome;
 	private String matricula;
+	@OneToOne
 	private Endereco endereco;
 	
 	public Usuario(String login, String senha, String nome, String matricula, Endereco endereco) {

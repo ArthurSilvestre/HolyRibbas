@@ -1,12 +1,20 @@
 package com.holyribbas.model;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Disciplina {
+	@Id
 	private int id;
 	private String nome;
 	private String area;
+	@ManyToOne
 	private Curso curso;
+	@OneToMany
 	private List<Turma> turmas;
 	
 	public Disciplina(int id, String nome, String area, Curso curso, List<Turma> turmas) {

@@ -1,9 +1,16 @@
 package com.holyribbas.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Nota {
+	@Id
 	private int unidade;
 	private float nota;
 	private int peso;
+	@ManyToOne
 	private Desempenho desempenho;
 	
 	public Nota(int unidade, float nota, int peso, Desempenho desempenho) {

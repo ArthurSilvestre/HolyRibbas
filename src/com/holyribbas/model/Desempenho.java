@@ -1,10 +1,19 @@
 package com.holyribbas.model;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Desempenho {
+	@Id
+	@ManyToOne
 	private Turma turma;
+	@ManyToOne
 	private Aluno aluno;
+	@OneToMany
 	private List<Nota> notas;
 	
 	public Desempenho(Turma turma, Aluno aluno, List<Nota> notas) {
@@ -37,6 +46,4 @@ public class Desempenho {
 	public void setNotas(List<Nota> notas) {
 		this.notas = notas;
 	}
-	
-	
 }

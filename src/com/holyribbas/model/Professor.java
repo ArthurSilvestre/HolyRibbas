@@ -1,11 +1,19 @@
 package com.holyribbas.model;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Professor extends Usuario{
+	@Id
 	private String areaAtuacao;
 	private String titulacao;
+	@ManyToMany
 	private List<Curso> cursos;
+	@OneToMany
 	private List<Turma> turmas;
 	
 	public Professor(String login, String senha, String nome, String matricula, String areaAtuacao, String titulacao, Endereco endereco, List<Curso> cursos, List<Turma> turmas) {

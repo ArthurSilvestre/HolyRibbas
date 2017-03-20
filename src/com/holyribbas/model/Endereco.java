@@ -1,6 +1,11 @@
 package com.holyribbas.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Endereco {
+	@Id
 	private String cep;
 	private String bairro;
 	private String numero;
