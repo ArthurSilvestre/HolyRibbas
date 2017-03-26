@@ -5,25 +5,29 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-public class Aluno extends Usuario{
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_Aluno")
+@Table(name = "ALUNO")
+public class Aluno extends Usuario implements IAbstractEntity{
+	@Temporal(TemporalType.DATE)	
+	@Column(name = "DATA_VINCULO")
 	private Date dataVinculo;
+
 	@ManyToOne
 	private Curso curso;
-	@OneToMany
-	private List<Desempenho> desempenhos;
 	
-	public Aluno(String login, String senha, String nome, String matricula, Date dataVinculo, Endereco endereco, Curso curso, List<Desempenho> desempenhos) {
-		super(login, senha, nome, matricula, endereco);
+	@OneToMany(mappedBy="aluno")
+	private List<Desempenho> desempenhos;
+
+	public Aluno(){}
+	
+	public Aluno(long id, String login, String senha, String nome, String matricula, Date dataVinculo, Endereco endereco, Curso curso, List<Desempenho> desempenhos) {
+		super(id, login, senha, nome, matricula, endereco);
 		this.dataVinculo = dataVinculo;
 		this.curso = curso;
 		this.desempenhos = desempenhos;
@@ -51,6 +55,11 @@ public class Aluno extends Usuario{
 
 	public void setDesempenhos(List<Desempenho> desempenhos) {
 		this.desempenhos = desempenhos;
+	}
+
+	@Override
+	public boolean hasValidId() {
+		return false;
 	}
 
 }

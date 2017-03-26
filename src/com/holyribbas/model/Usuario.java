@@ -1,20 +1,32 @@
 package com.holyribbas.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Usuario {
+public abstract class Usuario implements IAbstractEntity {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_USUARIO")
+	private Long id;
 	private String login;
 	private String senha;
 	private String nome;
 	private String matricula;
+
 	@OneToOne
+	@JoinColumn(name="endereco_id")
 	private Endereco endereco;
 	
-	public Usuario(String login, String senha, String nome, String matricula, Endereco endereco) {
+	public Usuario(){}
+	
+	public Usuario(Long id, String login, String senha, String nome, String matricula, Endereco endereco) {
+		this.id = id;
 		this.login = login;
 		this.senha = senha;
 		this.nome = nome;
@@ -60,6 +72,16 @@ public class Usuario {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+	@Override
+	public Long getId() {
+		return this.id;
+	}
+
+	@Override
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }

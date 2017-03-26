@@ -1,25 +1,35 @@
 package com.holyribbas.model;
 
 import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-public class Turma {
+@Table(name = "TURMA")
+public class Turma implements IAbstractEntity {
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "ID_TURMA")
+	private long id;
 	private int semestre;
 	private int ano;
 	@ManyToOne
 	private Disciplina disciplina;
 	@ManyToOne
 	private Professor professor;
-	@OneToMany
+	@OneToMany(mappedBy = "turma")
 	private List<Desempenho> desempenhos;
 	
-	public Turma(String id, int semestre, int ano, Disciplina disciplina, Professor professor, List<Desempenho> desempenhos) {
+	public Turma(){}
+	
+	public Turma(long id, int semestre, int ano, Disciplina disciplina, Professor professor, List<Desempenho> desempenhos) {
 		this.id = id;
 		this.semestre = semestre;
 		this.ano = ano;
@@ -28,27 +38,27 @@ public class Turma {
 		this.desempenhos = desempenhos;
 	}
 
-	protected String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	protected void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	protected int getSemestre() {
+	public int getSemestre() {
 		return semestre;
 	}
 
-	protected void setSemestre(int semestre) {
+	public void setSemestre(int semestre) {
 		this.semestre = semestre;
 	}
 
-	protected int getAno() {
+	public int getAno() {
 		return ano;
 	}
 
-	protected void setAno(int ano) {
+	public void setAno(int ano) {
 		this.ano = ano;
 	}
 
@@ -74,6 +84,18 @@ public class Turma {
 
 	public void setDesempenhos(List<Desempenho> desempenhos) {
 		this.desempenhos = desempenhos;
+	}
+
+	@Override
+	public void setId(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean hasValidId() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

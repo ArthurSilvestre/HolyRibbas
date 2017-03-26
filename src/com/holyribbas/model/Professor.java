@@ -1,23 +1,28 @@
 package com.holyribbas.model;
 
 import java.util.List;
+
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "PROFESSOR")
 public class Professor extends Usuario{
-	@Id
 	private String areaAtuacao;
 	private String titulacao;
+
 	@ManyToMany
 	private List<Curso> cursos;
+	
 	@OneToMany
 	private List<Turma> turmas;
+
+	public Professor(){}
 	
-	public Professor(String login, String senha, String nome, String matricula, String areaAtuacao, String titulacao, Endereco endereco, List<Curso> cursos, List<Turma> turmas) {
-		super(login, senha, nome, matricula, endereco);
+	public Professor(long id, String login, String senha, String nome, String matricula, String areaAtuacao, String titulacao, Endereco endereco, List<Curso> cursos, List<Turma> turmas) {
+		super(id, login, senha, nome, matricula, endereco);
 		this.areaAtuacao = areaAtuacao;
 		this.titulacao = titulacao;
 		this.cursos = cursos;
@@ -54,6 +59,12 @@ public class Professor extends Usuario{
 
 	public void setTurmas(List<Turma> turmas) {
 		this.turmas = turmas;
+	}
+
+	@Override
+	public boolean hasValidId() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

@@ -1,27 +1,31 @@
 package com.holyribbas.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Endereco {
 	@Id
+	@GeneratedValue
+	private float id;
+	
 	private String cep;
 	private String bairro;
 	private String numero;
 	private String complemento;
 	private String cidade;
 	private String estado;
-	private Usuario usuario;
 
-	public Endereco(String cep, String bairro, String numero, String complemento, String cidade, String estado, Usuario usuario) {
+	public Endereco(){}
+	
+	public Endereco(String cep, String bairro, String numero, String complemento, String cidade, String estado) {
 		this.cep = cep;
 		this.bairro = bairro;
 		this.numero = numero;
 		this.complemento = complemento;
 		this.cidade = cidade;
 		this.estado = estado;
-		this.usuario = usuario;
 	}
 
 	public String getCep() {
@@ -72,12 +76,4 @@ public class Endereco {
 		this.estado = estado;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
 }

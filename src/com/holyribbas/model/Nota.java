@@ -1,17 +1,27 @@
 package com.holyribbas.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Nota {
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "ID_NOTA")
+	private float id;
+	
 	private int unidade;
 	private float nota;
 	private int peso;
+
 	@ManyToOne
 	private Desempenho desempenho;
+	
+	public Nota(){}
 	
 	public Nota(int unidade, float nota, int peso, Desempenho desempenho) {
 		this.unidade = unidade;

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
+<%@page import="javax.persistence.EntityManager"%>
+<%@ page import="com.holyribbas.dao.*" %>
+<%@ page import="com.holyribbas.model.*" %>
+<%@ page import="com.holyribbas.util.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<% EntityManagerUtil entityManagerUtil = new EntityManagerUtil(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -7,7 +12,7 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>
-			Login - Controle Academico
+			Main Page - Controle Academico
 		</title>
 
 		<!-- Compiled and minified CSS -->
@@ -64,6 +69,7 @@
 
 		  <!-- Body -->	
 		  	
+		  <% CursoDao cursoDao = new CursoDao(entityManagerUtil.getEntityManager()); %>	
 		  <div id="cursos" class="col s12">
 			  <h4>
 				Listagem de cursos
@@ -84,7 +90,7 @@
 			    </form>
 			  </div>
 			  
-			  <a class="waves-effect waves-light btn"><i class="material-icons left">library_add</i>Novo Curso</a>
+			  <a class="waves-effect waves-light btn"><i class="material-icons left">library_add</i>Novo</a>
 			  
 			  <div id="demo">
 				  <!-- Responsive table starts here -->
@@ -95,99 +101,31 @@
 				      <thead>
 				        <tr>
 				          <th>ID</th>
-				          <th>Name</th>
-				          <th>Link</th>
-				          <th>Status</th>
+				          <th>Nome</th>
+				          <th>Tipo</th>
 				        </tr>
 				      </thead>
 				      <tbody>
-				        <tr>
-				          <td data-title="ID">1</td>
-				          <td data-title="Name">Material Design Color Palette</td>
-				          <td data-title="Link">
-				            <a href="https://github.com/zavoloklom/material-design-color-palette" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">2</td>
-				          <td data-title="Name">Material Design Iconic Font</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/uqCsB" target="_blank">Codepen</a>
-				            <a href="https://github.com/zavoloklom/material-design-iconic-font" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">3</td>
-				          <td data-title="Name">Material Design Hierarchical Display</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/eNaEBM" target="_blank">Codepen</a>
-				            <a href="https://github.com/zavoloklom/material-design-hierarchical-display" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">4</td>
-				          <td data-title="Name">Material Design Sidebar</td>
-				          <td data-title="Link"><a href="http://codepen.io/zavoloklom/pen/dIgco" target="_blank">Codepen</a></td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">5</td>
-				          <td data-title="Name">Material Design Tiles</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/wtApI" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">6</td>
-				          <td data-title="Name">Material Design Typography</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/IkaFL" target="_blank">Codepen</a>
-				            <a href="https://github.com/zavoloklom/material-design-typography" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">7</td>
-				          <td data-title="Name">Material Design Buttons</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/Gubja" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">In progress</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">8</td>
-				          <td data-title="Name">Material Design Form Elements</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/yaozl" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">In progress</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">9</td>
-				          <td data-title="Name">Material Design Email Template</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/qEVqzx" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">10</td>
-				          <td data-title="Name">Material Design Animation Timing (old one)</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/Jbrho" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
+				        
+				        <%  for (IAbstractEntity curso_abstract : cursoDao.listar()) {  %>
+					        <% Curso curso = (Curso) curso_abstract; %>
+					        <tr>
+					          <td> <%= curso.getId() %> </td>
+					          <td> <%= curso.getNome() %> </td>
+					          <td> <%= curso.getTipo() %> </td>
+					          
+					          <!--  <td data-title="Link">
+					            <a href="https://github.com/zavoloklom/material-design-color-palette" target="_blank">GitHub</a>
+					          </td> -->
+					        </tr>				        
+				        <%} %>
 				      </tbody>
 				    </table>
 				  </div>
 				</div>			  			
 		  </div>
-		  
+
+		  <% DisciplinaDao disciplinaDao = new DisciplinaDao(entityManagerUtil.getEntityManager()); %>
 		  <div id="disciplinas" class="col s12">
 			  <h4>
 				Listagem de disciplinas
@@ -208,7 +146,7 @@
 			    </form>
 			  </div>
 			  
-			  <a class="waves-effect waves-light btn"><i class="material-icons left">library_add</i>Novo Curso</a>
+			  <a class="waves-effect waves-light btn"><i class="material-icons left">library_add</i>Novo</a>
 			  
 			  <div id="demo">
 				  <!-- Responsive table starts here -->
@@ -218,99 +156,32 @@
 				  <table id="table" class="table table-hover table-mc-light-blue">
 				      <thead>
 				        <tr>
-				          <th>ID</th>
-				          <th>Name</th>
-				          <th>Link</th>
-				          <th>Status</th>
+				          <th>Codigo</th>
+				          <th>Nome</th>
+				          <th>Curso</th>
 				        </tr>
 				      </thead>
 				      <tbody>
-				        <tr>
-				          <td data-title="ID">1</td>
-				          <td data-title="Name">Material Design Color Palette</td>
-				          <td data-title="Link">
-				            <a href="https://github.com/zavoloklom/material-design-color-palette" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">2</td>
-				          <td data-title="Name">Material Design Iconic Font</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/uqCsB" target="_blank">Codepen</a>
-				            <a href="https://github.com/zavoloklom/material-design-iconic-font" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">3</td>
-				          <td data-title="Name">Material Design Hierarchical Display</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/eNaEBM" target="_blank">Codepen</a>
-				            <a href="https://github.com/zavoloklom/material-design-hierarchical-display" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">4</td>
-				          <td data-title="Name">Material Design Sidebar</td>
-				          <td data-title="Link"><a href="http://codepen.io/zavoloklom/pen/dIgco" target="_blank">Codepen</a></td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">5</td>
-				          <td data-title="Name">Material Design Tiles</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/wtApI" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">6</td>
-				          <td data-title="Name">Material Design Typography</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/IkaFL" target="_blank">Codepen</a>
-				            <a href="https://github.com/zavoloklom/material-design-typography" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">7</td>
-				          <td data-title="Name">Material Design Buttons</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/Gubja" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">In progress</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">8</td>
-				          <td data-title="Name">Material Design Form Elements</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/yaozl" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">In progress</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">9</td>
-				          <td data-title="Name">Material Design Email Template</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/qEVqzx" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">10</td>
-				          <td data-title="Name">Material Design Animation Timing (old one)</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/Jbrho" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
+				        
+				        <%  for (IAbstractEntity disciplina_abstract : disciplinaDao.listar()) {  %>
+					        <% Disciplina disciplina = (Disciplina) disciplina_abstract; %>
+					        <tr>
+					          <td> <%= disciplina.getId() %> </td>
+					          <td> <%= disciplina.getNome() %> </td>
+					          <td> <%= disciplina.getCurso().getNome() %> </td>
+					          
+					          <!--  <td data-title="Link">
+					            <a href="https://github.com/zavoloklom/material-design-color-palette" target="_blank">GitHub</a>
+					          </td> -->
+					        </tr>				        
+				        <%} %>
 				      </tbody>
 				    </table>
 				  </div>
 				</div>	
 		  </div>
+
+		  <% TurmaDao turmaDao = new TurmaDao(entityManagerUtil.getEntityManager()); %>
 		  <div id="turmas" class="col s12">
 			  <h4>
 				Listagem de turmas
@@ -346,7 +217,7 @@
 			    </form>
 			  </div>
 			  
-			  <a class="waves-effect waves-light btn"><i class="material-icons left">library_add</i>Novo Curso</a>
+			  <a class="waves-effect waves-light btn"><i class="material-icons left">library_add</i>Novo</a>
 			  
 			  <div id="demo">
 				  <!-- Responsive table starts here -->
@@ -356,100 +227,36 @@
 				  <table id="table" class="table table-hover table-mc-light-blue">
 				      <thead>
 				        <tr>
-				          <th>ID</th>
-				          <th>Name</th>
-				          <th>Link</th>
-				          <th>Status</th>
+				          <th>Codigo</th>
+				          <th>Semestre</th>
+				          <th>Disciplina</th>
+				          <th>Curso</th>
+				          <th>Professor</th>
 				        </tr>
 				      </thead>
 				      <tbody>
-				        <tr>
-				          <td data-title="ID">1</td>
-				          <td data-title="Name">Material Design Color Palette</td>
-				          <td data-title="Link">
-				            <a href="https://github.com/zavoloklom/material-design-color-palette" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">2</td>
-				          <td data-title="Name">Material Design Iconic Font</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/uqCsB" target="_blank">Codepen</a>
-				            <a href="https://github.com/zavoloklom/material-design-iconic-font" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">3</td>
-				          <td data-title="Name">Material Design Hierarchical Display</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/eNaEBM" target="_blank">Codepen</a>
-				            <a href="https://github.com/zavoloklom/material-design-hierarchical-display" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">4</td>
-				          <td data-title="Name">Material Design Sidebar</td>
-				          <td data-title="Link"><a href="http://codepen.io/zavoloklom/pen/dIgco" target="_blank">Codepen</a></td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">5</td>
-				          <td data-title="Name">Material Design Tiles</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/wtApI" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">6</td>
-				          <td data-title="Name">Material Design Typography</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/IkaFL" target="_blank">Codepen</a>
-				            <a href="https://github.com/zavoloklom/material-design-typography" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">7</td>
-				          <td data-title="Name">Material Design Buttons</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/Gubja" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">In progress</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">8</td>
-				          <td data-title="Name">Material Design Form Elements</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/yaozl" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">In progress</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">9</td>
-				          <td data-title="Name">Material Design Email Template</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/qEVqzx" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">10</td>
-				          <td data-title="Name">Material Design Animation Timing (old one)</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/Jbrho" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
+				        
+				        <%  for (IAbstractEntity turma_abstract : turmaDao.listar()) {  %>
+					        <% Turma turma = (Turma) turma_abstract; %>
+					        <tr>
+					          <td> <%= turma.getId() %> </td>
+					          <td> <%= turma.getSemestre() %> </td>
+					          <td> <%= turma.getDisciplina().getNome() %> </td>
+					          <td> <%= turma.getDisciplina().getCurso().getNome() %> </td>
+					          <td> <%= turma.getProfessor().getNome() %> </td>
+					          
+					          <!--  <td data-title="Link">
+					            <a href="https://github.com/zavoloklom/material-design-color-palette" target="_blank">GitHub</a>
+					          </td> -->
+					        </tr>				        
+				        <%} %>
 				      </tbody>
 				    </table>
 				  </div>
 				</div>	
 		  </div>
 		  
+		  <% AlunoDao alunoDao = new AlunoDao(entityManagerUtil.getEntityManager()); %>
 		  <div id="alunos" class="col s12">
 			  <h4>
 				Listagem de disciplinas
@@ -475,7 +282,7 @@
 			    </form>
 			  </div>
 			  
-			  <a class="waves-effect waves-light btn"><i class="material-icons left">library_add</i>Novo Curso</a>
+			  <a class="waves-effect waves-light btn"><i class="material-icons left">library_add</i>Novo</a>
 			  
 			  <div id="demo">
 				  <!-- Responsive table starts here -->
@@ -485,94 +292,25 @@
 				  <table id="table" class="table table-hover table-mc-light-blue">
 				      <thead>
 				        <tr>
-				          <th>ID</th>
-				          <th>Name</th>
-				          <th>Link</th>
-				          <th>Status</th>
+				          <th>Matricula</th>
+				          <th>Nome</th>
+				          <th>Curso</th>
 				        </tr>
 				      </thead>
 				      <tbody>
-				        <tr>
-				          <td data-title="ID">1</td>
-				          <td data-title="Name">Material Design Color Palette</td>
-				          <td data-title="Link">
-				            <a href="https://github.com/zavoloklom/material-design-color-palette" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">2</td>
-				          <td data-title="Name">Material Design Iconic Font</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/uqCsB" target="_blank">Codepen</a>
-				            <a href="https://github.com/zavoloklom/material-design-iconic-font" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">3</td>
-				          <td data-title="Name">Material Design Hierarchical Display</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/eNaEBM" target="_blank">Codepen</a>
-				            <a href="https://github.com/zavoloklom/material-design-hierarchical-display" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">4</td>
-				          <td data-title="Name">Material Design Sidebar</td>
-				          <td data-title="Link"><a href="http://codepen.io/zavoloklom/pen/dIgco" target="_blank">Codepen</a></td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">5</td>
-				          <td data-title="Name">Material Design Tiles</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/wtApI" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">6</td>
-				          <td data-title="Name">Material Design Typography</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/IkaFL" target="_blank">Codepen</a>
-				            <a href="https://github.com/zavoloklom/material-design-typography" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">7</td>
-				          <td data-title="Name">Material Design Buttons</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/Gubja" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">In progress</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">8</td>
-				          <td data-title="Name">Material Design Form Elements</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/yaozl" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">In progress</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">9</td>
-				          <td data-title="Name">Material Design Email Template</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/qEVqzx" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">10</td>
-				          <td data-title="Name">Material Design Animation Timing (old one)</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/Jbrho" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
+				        
+				        <%  for (IAbstractEntity aluno_abstract : alunoDao.listar()) {  %>
+					        <% Aluno aluno = (Aluno) aluno_abstract; %>
+					        <tr>
+					          <td> <%= aluno.getMatricula() %> </td>
+					          <td> <%= aluno.getNome() %> </td>
+					          <td> <%= aluno.getCurso().getNome() %> </td>
+					          
+					          <!--  <td data-title="Link">
+					            <a href="https://github.com/zavoloklom/material-design-color-palette" target="_blank">GitHub</a>
+					          </td> -->
+					        </tr>				        
+				        <%} %>
 				      </tbody>
 				    </table>
 				  </div>
@@ -580,6 +318,7 @@
 
 		  </div>	
 		  
+		  <% ProfessorDao professorDao = new ProfessorDao(entityManagerUtil.getEntityManager()); %>
 		  <div id="professores" class="col s12">
 			  <h4>
 				Listagem de turmas
@@ -610,7 +349,7 @@
 			    </form>
 			  </div>
 			  
-			  <a class="waves-effect waves-light btn"><i class="material-icons left">library_add</i>Novo Curso</a>
+			  <a class="waves-effect waves-light btn"><i class="material-icons left">library_add</i>Novo</a>
 			  
 			  <div id="demo">
 				  <!-- Responsive table starts here -->
@@ -620,94 +359,23 @@
 				  <table id="table" class="table table-hover table-mc-light-blue">
 				      <thead>
 				        <tr>
-				          <th>ID</th>
-				          <th>Name</th>
-				          <th>Link</th>
-				          <th>Status</th>
+				          <th>Codigo</th>
+				          <th>Professor</th>
 				        </tr>
 				      </thead>
 				      <tbody>
-				        <tr>
-				          <td data-title="ID">1</td>
-				          <td data-title="Name">Material Design Color Palette</td>
-				          <td data-title="Link">
-				            <a href="https://github.com/zavoloklom/material-design-color-palette" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">2</td>
-				          <td data-title="Name">Material Design Iconic Font</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/uqCsB" target="_blank">Codepen</a>
-				            <a href="https://github.com/zavoloklom/material-design-iconic-font" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">3</td>
-				          <td data-title="Name">Material Design Hierarchical Display</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/eNaEBM" target="_blank">Codepen</a>
-				            <a href="https://github.com/zavoloklom/material-design-hierarchical-display" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">4</td>
-				          <td data-title="Name">Material Design Sidebar</td>
-				          <td data-title="Link"><a href="http://codepen.io/zavoloklom/pen/dIgco" target="_blank">Codepen</a></td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">5</td>
-				          <td data-title="Name">Material Design Tiles</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/wtApI" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">6</td>
-				          <td data-title="Name">Material Design Typography</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/IkaFL" target="_blank">Codepen</a>
-				            <a href="https://github.com/zavoloklom/material-design-typography" target="_blank">GitHub</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">7</td>
-				          <td data-title="Name">Material Design Buttons</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/Gubja" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">In progress</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">8</td>
-				          <td data-title="Name">Material Design Form Elements</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/yaozl" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">In progress</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">9</td>
-				          <td data-title="Name">Material Design Email Template</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/qEVqzx" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
-				        <tr>
-				          <td data-title="ID">10</td>
-				          <td data-title="Name">Material Design Animation Timing (old one)</td>
-				          <td data-title="Link">
-				            <a href="http://codepen.io/zavoloklom/pen/Jbrho" target="_blank">Codepen</a>
-				          </td>
-				          <td data-title="Status">Completed</td>
-				        </tr>
+				        
+				        <%  for (IAbstractEntity professor_abstract : professorDao.listar()) {  %>
+					        <% Professor professor = (Professor) professor_abstract; %>
+					        <tr>
+					          <td> <%= professor.getId() %> </td>
+					          <td> <%= professor.getNome() %> </td>
+					          
+					          <!--  <td data-title="Link">
+					            <a href="https://github.com/zavoloklom/material-design-color-palette" target="_blank">GitHub</a>
+					          </td> -->
+					        </tr>				        
+				        <%} %>
 				      </tbody>
 				    </table>
 				  </div>

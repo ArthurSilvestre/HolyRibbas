@@ -1,20 +1,35 @@
 package com.holyribbas.model;
 
 import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "DESEMPENHO")
 public class Desempenho {
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "ID_DESEMPENHO")
+	private long id;
+	
 	@ManyToOne
 	private Turma turma;
+	
 	@ManyToOne
 	private Aluno aluno;
-	@OneToMany
+	
+	@OneToMany(mappedBy = "desempenho")
 	private List<Nota> notas;
+	
+	public Desempenho(){
+	}
 	
 	public Desempenho(Turma turma, Aluno aluno, List<Nota> notas) {
 		super();
@@ -46,4 +61,6 @@ public class Desempenho {
 	public void setNotas(List<Nota> notas) {
 		this.notas = notas;
 	}
+	
+	
 }

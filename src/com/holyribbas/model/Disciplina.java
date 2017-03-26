@@ -1,23 +1,35 @@
 package com.holyribbas.model;
 
 import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-public class Disciplina {
+@Table(name = "DISCIPLINA")
+public class Disciplina implements IAbstractEntity{
 	@Id
-	private int id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "ID_DISCIPLINA")
+	private Long id;
 	private String nome;
 	private String area;
+
 	@ManyToOne
 	private Curso curso;
-	@OneToMany
+	
+	@OneToMany(mappedBy = "disciplina")
 	private List<Turma> turmas;
 	
-	public Disciplina(int id, String nome, String area, Curso curso, List<Turma> turmas) {
+	public Disciplina(){}
+	
+	public Disciplina(long id, String nome, String area, Curso curso, List<Turma> turmas) {
 		this.id = id;
 		this.nome = nome;
 		this.area = area;
@@ -25,27 +37,27 @@ public class Disciplina {
 		this.turmas = turmas;
 	}
 
-	protected int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	protected void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	protected String getNome() {
+	public String getNome() {
 		return nome;
 	}
 
-	protected void setNome(String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	protected String getArea() {
+	public String getArea() {
 		return area;
 	}
 
-	protected void setArea(String area) {
+	public void setArea(String area) {
 		this.area = area;
 	}
 
@@ -63,6 +75,12 @@ public class Disciplina {
 
 	public void setTurmas(List<Turma> turmas) {
 		this.turmas = turmas;
+	}
+
+	@Override
+	public boolean hasValidId() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }
