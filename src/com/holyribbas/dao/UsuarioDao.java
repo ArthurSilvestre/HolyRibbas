@@ -2,7 +2,7 @@ package com.holyribbas.dao;
 
 import javax.persistence.EntityManager;
 
-import com.holyribbas.model.IAbstractEntity;
+import com.holyribbas.model.Usuario;
 
 public class UsuarioDao extends AbstractDao {
 
@@ -11,7 +11,12 @@ public class UsuarioDao extends AbstractDao {
 	}
 
 	@Override
-	public Class<IAbstractEntity> entityClass() {
-		return IAbstractEntity.class;
+	public Class<Usuario> entityClass() {
+		return Usuario.class;
+	}
+
+	@Override
+	public String getClassName() {
+		return "USUARIO";
 	}
 }

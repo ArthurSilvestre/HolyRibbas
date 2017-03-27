@@ -107,7 +107,7 @@
 				      </thead>
 				      <tbody>
 				        
-				        <%  for (IAbstractEntity curso_abstract : cursoDao.listar()) {  %>
+				        <%  for (IAbstractEntity curso_abstract : cursoDao.findAll()) {  %>
 					        <% Curso curso = (Curso) curso_abstract; %>
 					        <tr>
 					          <td> <%= curso.getId() %> </td>
@@ -163,7 +163,7 @@
 				      </thead>
 				      <tbody>
 				        
-				        <%  for (IAbstractEntity disciplina_abstract : disciplinaDao.listar()) {  %>
+				        <%  for (IAbstractEntity disciplina_abstract : disciplinaDao.findAll()) {  %>
 					        <% Disciplina disciplina = (Disciplina) disciplina_abstract; %>
 					        <tr>
 					          <td> <%= disciplina.getId() %> </td>
@@ -236,7 +236,7 @@
 				      </thead>
 				      <tbody>
 				        
-				        <%  for (IAbstractEntity turma_abstract : turmaDao.listar()) {  %>
+				        <%  for (IAbstractEntity turma_abstract : turmaDao.findAll()) {  %>
 					        <% Turma turma = (Turma) turma_abstract; %>
 					        <tr>
 					          <td> <%= turma.getId() %> </td>
@@ -299,7 +299,7 @@
 				      </thead>
 				      <tbody>
 				        
-				        <%  for (IAbstractEntity aluno_abstract : alunoDao.listar()) {  %>
+				        <%  for (IAbstractEntity aluno_abstract : alunoDao.findAll()) {  %>
 					        <% Aluno aluno = (Aluno) aluno_abstract; %>
 					        <tr>
 					          <td> <%= aluno.getMatricula() %> </td>
@@ -365,7 +365,7 @@
 				      </thead>
 				      <tbody>
 				        
-				        <%  for (IAbstractEntity professor_abstract : professorDao.listar()) {  %>
+				        <%  for (IAbstractEntity professor_abstract : professorDao.findAll()) {  %>
 					        <% Professor professor = (Professor) professor_abstract; %>
 					        <tr>
 					          <td> <%= professor.getId() %> </td>

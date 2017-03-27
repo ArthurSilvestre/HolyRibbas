@@ -15,9 +15,9 @@ import javax.persistence.Table;
 @Table(name = "TURMA")
 public class Turma implements IAbstractEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_TURMA")
-	private long id;
+	private int id;
 	private int semestre;
 	private int ano;
 	@ManyToOne
@@ -29,7 +29,7 @@ public class Turma implements IAbstractEntity {
 	
 	public Turma(){}
 	
-	public Turma(long id, int semestre, int ano, Disciplina disciplina, Professor professor, List<Desempenho> desempenhos) {
+	public Turma(int id, int semestre, int ano, Disciplina disciplina, Professor professor, List<Desempenho> desempenhos) {
 		this.id = id;
 		this.semestre = semestre;
 		this.ano = ano;
@@ -38,11 +38,11 @@ public class Turma implements IAbstractEntity {
 		this.desempenhos = desempenhos;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -84,12 +84,6 @@ public class Turma implements IAbstractEntity {
 
 	public void setDesempenhos(List<Desempenho> desempenhos) {
 		this.desempenhos = desempenhos;
-	}
-
-	@Override
-	public void setId(Long id) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

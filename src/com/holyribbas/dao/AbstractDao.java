@@ -2,8 +2,8 @@ package com.holyribbas.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import com.holyribbas.model.IAbstractEntity;
 
 public abstract class AbstractDao {
@@ -15,7 +15,9 @@ public abstract class AbstractDao {
 	}
 
 	public void inserir(IAbstractEntity aluno) {
-		manager.persist(aluno);
+		manager.getTransaction().begin();
+		manager.merge(aluno);
+		manager.getTransaction().commit();
 	}
 
 	public void atualizar(IAbstractEntity entity) {
@@ -27,16 +29,32 @@ public abstract class AbstractDao {
 		manager.remove(entity);
 	}
 
-	public abstract Class<IAbstractEntity> entityClass();
+	public abstract Class<?> entityClass();
+	
+	public abstract String getClassName();
 
-	public IAbstractEntity buscarPorId(Long id) {
-		return manager.find(entityClass(), id);
+	public IAbstractEntity buscarPorId(int id) {
+		return (IAbstractEntity) manager.find(entityClass(), id);
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<IAbstractEntity> listar() {
-		Query query = manager.createQuery("select c from " + entityClass().getSimpleName() + " c");
-		return query.getResultList();
-	}
-
+    @SuppressWarnings("unchecked")
+	public List<IAbstractEntity> findAll() {
+	    EntityManagerFactory factory = Persistence.createEntityManagerFactory("test");
+	    EntityManager entityManager = factory.createEntityManager();
+	    entityManager.getTransaction().begin();
+	    List<IAbstractEntity> listPersons = entityManager.createQuery("SELECT p FROM "+getClassName()+" p").getResultList();
+	    entityManager.getTransaction().commit();
+	    entityManager.close();
+	    factory.close();
+	    if (listPersons == null) {
+	        System.out.println("No persons found . ");
+	    } else {
+	        for (IAbstractEntity person : listPersons) {
+	        	listPersons.add(person);
+	        }
+	    }
+	
+	    return listPersons;
+    }	
+	
 }

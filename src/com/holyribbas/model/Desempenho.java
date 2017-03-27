@@ -13,11 +13,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "DESEMPENHO")
-public class Desempenho {
+public class Desempenho implements IAbstractEntity{
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_DESEMPENHO")
-	private long id;
+	private int id;
 	
 	@ManyToOne
 	private Turma turma;
@@ -31,8 +31,8 @@ public class Desempenho {
 	public Desempenho(){
 	}
 	
-	public Desempenho(Turma turma, Aluno aluno, List<Nota> notas) {
-		super();
+	public Desempenho(int id, Turma turma, Aluno aluno, List<Nota> notas) {
+		this.id = id;
 		this.turma = turma;
 		this.aluno = aluno;
 		this.notas = notas;
@@ -60,6 +60,20 @@ public class Desempenho {
 
 	public void setNotas(List<Nota> notas) {
 		this.notas = notas;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Override
+	public boolean hasValidId() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

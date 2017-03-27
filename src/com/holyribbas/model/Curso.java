@@ -15,10 +15,14 @@ import javax.persistence.Table;
 @Table(name = "CURSO")
 public class Curso implements IAbstractEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_CURSO")
-	private long id;
+	private int id;
+	
+	@Column(name = "NOME")
 	private String nome;
+	
+	@Column(name = "TIPO")
 	private String tipo;
 
 	@OneToMany
@@ -32,7 +36,7 @@ public class Curso implements IAbstractEntity {
 	
 	public Curso(){}
 	
-	public Curso(long id, String nome, String tipo, List<Aluno> alunos, List<Professor> professores, List<Disciplina> disciplinas) {
+	public Curso(int id, String nome, String tipo, List<Aluno> alunos, List<Professor> professores, List<Disciplina> disciplinas) {
 		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
@@ -41,22 +45,22 @@ public class Curso implements IAbstractEntity {
 		this.disciplinas = disciplinas;
 	}
 	
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	protected void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getNome() {
 		return nome;
 	}
-	protected void setNome(String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 	public String getTipo() {
 		return tipo;
 	}
-	protected void setTipo(String tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
@@ -85,16 +89,9 @@ public class Curso implements IAbstractEntity {
 	}
 
 	@Override
-	public void setId(Long id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public boolean hasValidId() {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 	
 }

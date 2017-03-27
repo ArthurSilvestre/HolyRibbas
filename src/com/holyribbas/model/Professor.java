@@ -5,10 +5,12 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "PROFESSOR")
+@PrimaryKeyJoinColumn(name="ID_USUARIO")
 public class Professor extends Usuario{
 	private String areaAtuacao;
 	private String titulacao;
@@ -21,8 +23,8 @@ public class Professor extends Usuario{
 
 	public Professor(){}
 	
-	public Professor(long id, String login, String senha, String nome, String matricula, String areaAtuacao, String titulacao, Endereco endereco, List<Curso> cursos, List<Turma> turmas) {
-		super(id, login, senha, nome, matricula, endereco);
+	public Professor(String login, String senha, String nome, String matricula, String areaAtuacao, String titulacao, Endereco endereco, List<Curso> cursos, List<Turma> turmas) {
+		super(login, senha, nome, matricula, endereco);
 		this.areaAtuacao = areaAtuacao;
 		this.titulacao = titulacao;
 		this.cursos = cursos;

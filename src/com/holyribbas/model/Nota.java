@@ -6,13 +6,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Nota {
+@Table(name = "NOTA")
+public class Nota implements IAbstractEntity{
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_NOTA")
-	private float id;
+	private int id;
 	
 	private int unidade;
 	private float nota;
@@ -23,7 +25,8 @@ public class Nota {
 	
 	public Nota(){}
 	
-	public Nota(int unidade, float nota, int peso, Desempenho desempenho) {
+	public Nota(int id, int unidade, float nota, int peso, Desempenho desempenho) {
+		this.id = id;
 		this.unidade = unidade;
 		this.nota = nota;
 		this.peso = peso;
@@ -60,6 +63,20 @@ public class Nota {
 
 	public void setDesempenho(Desempenho desempenho) {
 		this.desempenho = desempenho;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Override
+	public boolean hasValidId() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

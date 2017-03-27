@@ -7,12 +7,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "ALUNO")
+@PrimaryKeyJoinColumn(name="ID_USUARIO")
 public class Aluno extends Usuario implements IAbstractEntity{
 	@Temporal(TemporalType.DATE)	
 	@Column(name = "DATA_VINCULO")
@@ -26,8 +28,8 @@ public class Aluno extends Usuario implements IAbstractEntity{
 
 	public Aluno(){}
 	
-	public Aluno(long id, String login, String senha, String nome, String matricula, Date dataVinculo, Endereco endereco, Curso curso, List<Desempenho> desempenhos) {
-		super(id, login, senha, nome, matricula, endereco);
+	public Aluno(String login, String senha, String nome, String matricula, Date dataVinculo, Endereco endereco, Curso curso, List<Desempenho> desempenhos) {
+		super(login, senha, nome, matricula, endereco);
 		this.dataVinculo = dataVinculo;
 		this.curso = curso;
 		this.desempenhos = desempenhos;

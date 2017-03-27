@@ -3,12 +3,14 @@ package com.holyribbas.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Endereco {
+@Table(name = "ENDERECO")
+public class Endereco{
 	@Id
 	@GeneratedValue
-	private float id;
+	private int id;
 	
 	private String cep;
 	private String bairro;
@@ -75,5 +77,14 @@ public class Endereco {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 
 }

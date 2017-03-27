@@ -2,6 +2,8 @@ package com.holyribbas.dao;
 
 import javax.persistence.EntityManager;
 
+import com.holyribbas.model.Aluno;
+import com.holyribbas.model.Desempenho;
 import com.holyribbas.model.IAbstractEntity;
 
 public class DesempenhoDao extends AbstractDao {
@@ -11,8 +13,13 @@ public class DesempenhoDao extends AbstractDao {
 	}
 
 	@Override
-	public Class<IAbstractEntity> entityClass() {
-		return IAbstractEntity.class;
+	public Class<Desempenho> entityClass() {
+		return Desempenho.class;
+	}
+
+	@Override
+	public String getClassName() {
+		return "DESEMPENHO";
 	}
 
 }

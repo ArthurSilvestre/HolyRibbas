@@ -2,7 +2,7 @@ package com.holyribbas.dao;
 
 import javax.persistence.EntityManager;
 
-import com.holyribbas.model.IAbstractEntity;
+import com.holyribbas.model.Nota;
 
 public class NotaDao extends AbstractDao {
 
@@ -11,8 +11,13 @@ public class NotaDao extends AbstractDao {
 	}
 
 	@Override
-	public Class<IAbstractEntity> entityClass() {
-		return IAbstractEntity.class;
+	public Class<Nota> entityClass() {
+		return Nota.class;
+	}
+
+	@Override
+	public String getClassName() {
+		return "NOTA";
 	}
 
 }

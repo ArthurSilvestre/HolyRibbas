@@ -2,9 +2,9 @@ package com.holyribbas.model;
 
 public interface IAbstractEntity {
 	
-	public abstract Long getId();
+	public abstract int getId();
 	
-	public abstract void setId(Long id);
+	public abstract void setId(int id);
 	
 	@Override
 	public boolean equals(Object obj);

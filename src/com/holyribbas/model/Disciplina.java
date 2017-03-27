@@ -15,9 +15,9 @@ import javax.persistence.Table;
 @Table(name = "DISCIPLINA")
 public class Disciplina implements IAbstractEntity{
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_DISCIPLINA")
-	private Long id;
+	private int id;
 	private String nome;
 	private String area;
 
@@ -29,7 +29,7 @@ public class Disciplina implements IAbstractEntity{
 	
 	public Disciplina(){}
 	
-	public Disciplina(long id, String nome, String area, Curso curso, List<Turma> turmas) {
+	public Disciplina(int id, String nome, String area, Curso curso, List<Turma> turmas) {
 		this.id = id;
 		this.nome = nome;
 		this.area = area;
@@ -37,11 +37,11 @@ public class Disciplina implements IAbstractEntity{
 		this.turmas = turmas;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

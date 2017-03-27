@@ -1,32 +1,38 @@
 package com.holyribbas.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "USUARIO")
+@Inheritance(strategy= InheritanceType.JOINED )
 public abstract class Usuario implements IAbstractEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_USUARIO")
-	private Long id;
+	private int id;
+	
 	private String login;
 	private String senha;
 	private String nome;
 	private String matricula;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="endereco_id")
 	private Endereco endereco;
 	
 	public Usuario(){}
 	
-	public Usuario(Long id, String login, String senha, String nome, String matricula, Endereco endereco) {
-		this.id = id;
+	public Usuario(String login, String senha, String nome, String matricula, Endereco endereco) {
 		this.login = login;
 		this.senha = senha;
 		this.nome = nome;
@@ -73,15 +79,16 @@ public abstract class Usuario implements IAbstractEntity {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-
-	@Override
-	public Long getId() {
-		return this.id;
-	}
-
-	@Override
-	public void setId(Long id) {
-		this.id = id;
-	}
 	
+	@Override
+	public int getId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setId(int id) {
+		// TODO Auto-generated method stub
+		
+	}	
 }
